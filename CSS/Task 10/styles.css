@@ -1,0 +1,27 @@
+.container {
+    width: 90%;
+}
+
+nav a {
+    margin-right: 20px;
+}
+
+img {
+    width: 50vw;
+}
+
+@media screen and (max-width: 768px) {
+
+    nav a {
+        display: block;
+        margin: 10px 0;
+    }
+
+    img {
+        width: 80vw;
+    }
+
+    body {
+        font-size: 14px;
+    }
+}

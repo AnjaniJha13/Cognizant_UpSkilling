@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+
+    <style>
+        #welcomeBanner {
+            background-color: blue;
+            color: white;
+            padding: 15px;
+        }
+
+        .highlight{
+            background-color: yellow;
+            font-weight: bold;
+        }
+
+        form {
+          width: 300px;
+          padding: 20px;
+          border: 1px solid gray;
+          background-color: #f2f2f2;
+}
+
+    </style>
+
+    <script>
+function showMessage() {
+    document.getElementById("result").value =
+        "Registration Successful!";
+}
+
+
+function validatePhone() {
+    alert("Phone number validated");
+}
+
+function showFee() {
+    let event = document.getElementById("event").value;
+    document.getElementById("fee").innerHTML =
+        "Fee: ₹500 for " + event;
+}
+
+function submitForm() {
+    alert("Feedback submitted successfully");
+}
+
+function enlargeImage(img) {
+    img.style.width = "300px";
+}
+
+function countChars() {
+    let text =
+        document.getElementById("feedback").value;
+
+    document.getElementById("count").innerHTML =
+        "Characters: " + text.length;
+}
+
+function validatePhone() {
+    alert("Phone number validated");
+}
+
+function showFee() {
+    let event = document.getElementById("event").value;
+    document.getElementById("fee").innerHTML =
+        "Fee: ₹500 for " + event;
+}
+
+function submitForm() {
+    alert("Feedback submitted successfully");
+}
+
+function enlargeImage(img) {
+    img.style.width = "300px";
+}
+
+function countChars() {
+    let text =
+        document.getElementById("feedback").value;
+
+    document.getElementById("count").innerHTML =
+        "Characters: " + text.length;
+}
+</script>
+</head>
+<body>
+
+    <form onsubmit="showMessage(); return false;">
+    
+    Name:
+    <input type="text" placeholder="Enter name"
+           required autofocus><br><br>
+
+    Email:
+    <input type="email" placeholder="Enter email"
+           required><br><br>
+
+    Date:
+    <input type="date" required><br><br>
+
+    Event Type:
+    <select required>
+        <option>Music</option>
+        <option>Sports</option>
+        <option>Workshop</option>
+    </select><br><br>
+
+    Message:
+    <textarea placeholder="Enter message"></textarea><br><br>
+
+    <input type="submit" value="Register"><br><br>
+
+    <output id="result"></output>
+
+</form>
+
+    <div id="welcomeBanner">
+    Welcome User!
+    <span style="color:red; font-weight:bold;">
+        Special Offer Today!
+    </span>
+</div>
+
+Phone:
+<input type="text" onblur="validatePhone()"><br><br>
+
+<select id="event" onchange="showFee()">
+    <option>Music</option>
+    <option>Sports</option>
+</select>
+
+<p id="fee"></p>
+
+<button onclick="submitForm()">Submit</button>
+
+<br><br>
+
+<img src="event.jpg" width="150"
+ondblclick="enlargeImage(this)">
+
+<br><br>
+
+<textarea id="feedback"
+onkeyup="countChars()"></textarea>
+
+<p id="count">Characters: 0</p>
+
+
+<p class="highlight">Community events are open now.</p>
+
+    <!--Navigation Section -->
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Events</a>
+        <a href="#">Contact</a>
+        <a href="help.html"  target="blank">Help</a>
+    </nav>
+
+    <section id="home">
+        <h2>Home Section</h2>
+    </section>
+
+    <section id="events">
+        <h2>Event Section</h2>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Section</h2>
+    </section>
+
+    <!--Main Section -->
+    <main>
+        <h1>Welcome to Community Event Portal</h1>
+    </main>
+
+    <!--Footer Section-->
+    <footer>
+        <p>© 2026 Local City Council</p>
+    </footer>
+
+</body>
+</html>

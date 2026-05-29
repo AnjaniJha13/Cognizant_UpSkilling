@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+
+    <style>
+        #welcomeBanner {
+            background-color: blue;
+            color: white;
+            padding: 15px;
+        }
+
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+
+        form {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid gray;
+            background-color: #f2f2f2;
+        }
+    </style>
+
+    <script>
+        function findLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    showPosition,
+                    showError,
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 5000
+                    }
+                );
+            } else {
+                alert("Geolocation not supported");
+            }
+        }
+
+        function showPosition(position) {
+            document.getElementById("location").innerHTML =
+                "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("Permission denied");
+                    break;
+
+                case error.TIMEOUT:
+                    alert("Request timeout");
+                    break;
+
+                default:
+                    alert("Location error");
+            }
+        }
+
+        function showMessage() {
+            document.getElementById("result").value =
+                "Registration Successful!";
+        }
+
+        function validatePhone() {
+            alert("Phone number validated");
+        }
+
+        function showFee() {
+            let event = document.getElementById("event").value;
+
+            document.getElementById("fee").innerHTML =
+                "Fee: ₹500 for " + event;
+        }
+
+        function submitForm() {
+            alert("Feedback submitted successfully");
+        }
+
+        function enlargeImage(img) {
+            img.style.width = "300px";
+        }
+
+        function countChars() {
+            let text =
+                document.getElementById("feedback").value;
+
+            document.getElementById("count").innerHTML =
+                "Characters: " + text.length;
+        }
+
+        function readyMessage() {
+            document.getElementById("msg").innerHTML =
+                "Video ready to play";
+        }
+
+        window.onbeforeunload = function () {
+            return "Your form is not completed!";
+        };
+
+        function savePreference() {
+            let event =
+                document.getElementById("eventType").value;
+
+            localStorage.setItem("preferredEvent", event);
+        }
+
+        function loadPreference() {
+            let saved =
+                localStorage.getItem("preferredEvent");
+
+            if (saved) {
+                document.getElementById("eventType").value =
+                    saved;
+            }
+        }
+
+        function clearData() {
+            localStorage.clear();
+            sessionStorage.clear();
+            alert("Preferences Cleared");
+        }
+    </script>
+</head>
+
+<body onload="loadPreference()">
+
+    <!-- Header -->
+    <header>
+        <div id="welcomeBanner">
+            Welcome User!
+            <span style="color:red; font-weight:bold;">
+                Special Offer Today!
+            </span>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home">Home</a> |
+        <a href="#events">Events</a> |
+        <a href="#contact">Contact</a> |
+        <a href="help.html" target="_blank">Help</a>
+    </nav>
+
+    <hr>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Event Preference -->
+        <h3>Select Preferred Event</h3>
+
+        <select id="eventType" onchange="savePreference()">
+            <option>Music</option>
+            <option>Sports</option>
+            <option>Workshop</option>
+        </select>
+
+        <button onclick="clearData()">
+            Clear Preferences
+        </button>
+
+        <br><br>
+
+        <!-- Registration Form -->
+        <form onsubmit="showMessage(); return false;">
+
+            Name:
+            <input type="text" placeholder="Enter name" required autofocus>
+
+            <br><br>
+
+            Email:
+            <input type="email" placeholder="Enter email" required>
+
+            <br><br>
+
+            Date:
+            <input type="date" required>
+
+            <br><br>
+
+            Event Type:
+            <select required>
+                <option>Music</option>
+                <option>Sports</option>
+                <option>Workshop</option>
+            </select>
+
+            <br><br>
+
+            Message:
+            <textarea placeholder="Enter message"></textarea>
+
+            <br><br>
+
+            <input type="submit" value="Register">
+
+            <br><br>
+
+            <output id="result"></output>
+
+        </form>
+
+        <br>
+
+        <!-- Phone Validation -->
+        Phone:
+        <input type="text" onblur="validatePhone()">
+
+        <br><br>
+
+        <!-- Event Fee -->
+        <select id="event" onchange="showFee()">
+            <option>Music</option>
+            <option>Sports</option>
+        </select>
+
+        <p id="fee"></p>
+
+        <button onclick="submitForm()">
+            Submit
+        </button>
+
+        <br><br>
+
+        <!-- Event Image -->
+        <img src="event.jpg" width="150" ondblclick="enlargeImage(this)" alt="Event Image">
+
+        <br><br>
+
+        <!-- Feedback -->
+        <textarea id="feedback" onkeyup="countChars()"></textarea>
+
+        <p id="count">Characters: 0</p>
+
+        <p class="highlight">
+            Community events are open now.
+        </p>
+
+        <!-- Video -->
+        <video width="400" controls oncanplay="readyMessage()">
+            <source src="promo.mp4" type="video/mp4">
+        </video>
+
+        <p id="msg"></p>
+
+        <!-- Geolocation -->
+        <button onclick="findLocation()">
+            Find Nearby Events
+        </button>
+
+        <p id="location"></p>
+
+        <!-- Sections -->
+        <section id="home">
+            <h2>Home Section</h2>
+        </section>
+
+        <section id="events">
+            <h2>Event Section</h2>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Section</h2>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Local City Council</p>
+    </footer>
+
+</body>
+
+</html>
